@@ -12,10 +12,10 @@ public class Book {
 
 
     public Book(String title, int numberOfPages, String author, String editor) throws IllegalArgumentException{
-        isStringValid(title);
-        isStringValid(author);
-        isStringValid(editor);
-        isIntValid(numberOfPages);
+        isStringValid(title, "Titolo");
+        isStringValid(author, "Autore");
+        isStringValid(editor, "Editore");
+        isIntValid(numberOfPages, "Numero di pagine");
         this.title = title;
         this.numberOfPages = numberOfPages;
         this.author = author;
@@ -23,15 +23,15 @@ public class Book {
     }
 
     //metodi
-    private void isStringValid(String value) throws IllegalArgumentException {
+    private void isStringValid(String value, String type) throws IllegalArgumentException {
         if (value.isEmpty()) {
-            throw new IllegalArgumentException("Invalid" + value);
+            throw new IllegalArgumentException(type + " non valido");
         }
     }
 
-    private void isIntValid(int value) throws IllegalArgumentException {
+    private void isIntValid(int value, String type) throws IllegalArgumentException {
         if (value <= 0) {
-            throw new IllegalArgumentException("Invalid " + value);
+            throw new IllegalArgumentException(type + " non valido");
         }
     }
 
@@ -43,7 +43,7 @@ public class Book {
     }
 
     public void setTitle(String title) throws IllegalArgumentException{
-        isStringValid(title);
+        isStringValid(title, "Titolo");
         this.title = title;
     }
 
@@ -52,7 +52,7 @@ public class Book {
     }
 
     public void setNumberOfPages(int numberOfPages) throws IllegalArgumentException{
-        isIntValid(numberOfPages);
+        isIntValid(numberOfPages, "Numero di pagine");
         this.numberOfPages = numberOfPages;
     }
 
@@ -61,7 +61,7 @@ public class Book {
     }
 
     public void setAuthor(String author) throws IllegalArgumentException{
-        isStringValid(author);
+        isStringValid(author, "Autore");
         this.author = author;
     }
 
@@ -70,7 +70,7 @@ public class Book {
     }
 
     public void setEditor(String editor) throws IllegalArgumentException{
-        isStringValid(editor);
+        isStringValid(editor, "Editore");
         this.editor = editor;
     }
 }
