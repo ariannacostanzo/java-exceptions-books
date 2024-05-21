@@ -35,6 +35,10 @@ public class Book {
         }
     }
 
+    public String bookInfo() {
+        return String.format("Titolo del libro: %s; Autore: %s, Editore: %s; Numero di pagine %d.", title, author, editor, numberOfPages);
+    }
+
     //setter e getter
 
 

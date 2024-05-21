@@ -1,5 +1,10 @@
 package exercises.books;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class Library {
@@ -55,29 +60,49 @@ public class Library {
                     System.out.println(e.getMessage());
                 }
             }
+        }
 
+        File file = new File("./resources/books.txt");
+        FileWriter fileWriter = null;
+
+        try {
+            fileWriter = new FileWriter(file);
+            fileWriter.write("I libri che hai inserito sono: ");
+            for (int i = 0; i < books.length; i++) {
+                fileWriter.write(books[i].bookInfo());
+            }
+
+        } catch (IOException e) {
+            System.out.println("could not retrieve file");
+        } finally {
+            if (fileWriter !=null) {
+                try {
+                    //lo chiudo
+                    fileWriter.close();
+                } catch (IOException e) {
+                    throw new RuntimeException();
+                }
+            }
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        try {
+            scanner = new Scanner(file);
+            while(scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                System.out.println(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("unable to read file");
+        }
 
 
         scanner.close();
 
 
     }
+
+
+
+
 }
